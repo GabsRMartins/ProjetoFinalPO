@@ -16,15 +16,12 @@ for i in range(m):
     for j in range(n):
         horas = S[j] / capacidade_i[i]
         t_ij[i,j] = horas  
-
-TD_jk = np.random.uniform(20,300,size=(n,n))
 f = np.random.uniform(1000,5000,size=m)
 o = np.random.uniform(1,10,size=m)
 
 # SAVE as .npy (robusto)
 np.save("data/c_ijk.npy", c_ijk)
 np.save("data/t_ij.npy", t_ij)
-np.save("data/TD_jk.npy", TD_jk)
 np.save("data/S.npy", S)
 np.save("data/f.npy", f)
 np.save("data/o.npy", o)

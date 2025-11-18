@@ -11,8 +11,8 @@ import json
 from gurobipy import Model, GRB
 
 # -------- CONFIG ----------
-USE_ALL_PRESSES = False   # Se True => força z[i]==1 para todas as prensas
-TIME_LIMIT = 120          # segundos, 0 para sem limite
+USE_ALL_PRESSES = True   # força uso de todas as prensas
+TIME_LIMIT = 600          # segundos, 0 para sem limite
 WRITE_IIS = True          # se infeasible, exportará IIS (gurobi .ilp)
 # --------------------------
 
@@ -24,7 +24,6 @@ deposito = 0
 print("Carregando dados .npy...")
 c = np.load("data/c_ijk.npy")        # (m,n,n)
 t = np.load("data/t_ij.npy")         # (m,n) minutos (processamento)
-TD = np.load("data/TD_jk.npy")       # (n,n) (opcional)
 S = np.load("data/S.npy")            # (n,)
 f = np.load("data/f.npy")            # (m,)
 o = np.load("data/o.npy")            # (m,)
@@ -59,26 +58,21 @@ model.setObjective(term_receita - term_transporte - term_fixo - term_operacional
 
 # -------- Restrições --------
 
-# 0) sem auto-loops
+# 0) Uma prensa não pode visitar a mesma cidade mais de uma vez
 for i in range(m):
     for j in range(n):
         model.addConstr(x[i, j, j] == 0)
 
-# 1) toda cidade não-depósito deve ser atribuída a exatamente uma prensa (visitada exatamente uma vez)
+# 1) Cada cidade só pode receber uma prensa
 for j in range(n):
     if j == deposito:
         # não força atribuição de depósito entre i
         continue
     model.addConstr(sum(u[i, j] for i in range(m)) == 1, name=f"atribuicao_cidade_{j}")
 
-#2) Cada prensa visita no máximo 5 cidades (excluindo depósito)
-for i in range(m):
-    model.addConstr(sum(u[i, j] for j in range(n) if j != deposito) <= 5,
-                    name=f"max_cidades_prensa_{i}")
 
 
-# 3) Liga visitas e arcos:
-# Para nós não-depósito: soma entrada = soma saída = u[i,j]
+# 2) Toda prensa que entrar em uma cidade precisa sair da cidade
 for i in range(m):
     for j in range(n):
         if j == deposito:
@@ -86,42 +80,42 @@ for i in range(m):
         model.addConstr(sum(x[i, k, j] for k in range(n)) == u[i, j], name=f"fluxo_entrada_u_{i}_{j}")
         model.addConstr(sum(x[i, j, k] for k in range(n)) == u[i, j], name=f"fluxo_saida_u_{i}_{j}")
 
-# 4) Entrada/saída do depósito: cada prensa se ativa deve sair e retornar do depósito uma vez
+# 3) Se prensa foi ativada, ela precisa sair uma vez do deposito e voltar uma única vez
 for i in range(m):
     model.addConstr(sum(x[i, deposito, k] for k in range(n)) == z[i], name=f"saida_deposito_{i}")
     model.addConstr(sum(x[i, k, deposito] for k in range(n)) == z[i], name=f"entrada_deposito_{i}")
 
-# 5) Liga arcos -> visitas (se um arco existe então ambos extremos são visitados pela prensa)
+# 4) Se um arco foi criado, as cidades envolvidas foram visitadas
 for i in range(m):
     for j in range(n):
         for k in range(n):
             model.addConstr(x[i, j, k] <= u[i, j])
             model.addConstr(x[i, j, k] <= u[i, k])
 
-# 6) w somente se visita
+# 5) Só pode processar sucata se a cidade for visitada
 for i in range(m):
     for j in range(n):
         model.addConstr(w[i, j] <= u[i, j])
 
-# 7) cada cidade processada exatamente uma vez (processamento completo)
+# 6) cada cidade processada exatamente uma vez (processamento completo)
 for j in range(n):
     if j == deposito:
         model.addConstr(sum(w[i, j] for i in range(m)) == 0)
     else:
         model.addConstr(sum(w[i, j] for i in range(m)) == 1, name=f"processa_uma_vez_{j}")
 
-# 8) liga volume
+# 7) O volume processado não pode ultrapassar o volume total da cidade (o deposito não possui sucata para ser processada)
 for j in range(n):
     if j == deposito:
         model.addConstr(vvol[j] == 0)
     else:
         model.addConstr(vvol[j] == S[j] * sum(w[i, j] for i in range(m)), name=f"liga_volume_{j}")
 
-# 9) z ligado a visitas: se alguma visita por i então z[i]=1
+# 8) z ligado a visitas: se alguma visita por i então z[i]=1
 for i in range(m):
     model.addConstr(sum(u[i, j] for j in range(n)) <= n * z[i])
 
-# 10) MTZ eliminação de sub-tours (nós 1..n-1)
+# 9) MTZ eliminação de sub-tours (nós 1..n-1)
 for i in range(m):
     for j in range(1, n):
         for k in range(1, n):
@@ -129,7 +123,7 @@ for i in range(m):
                 continue
             model.addConstr(eta[i, j] - eta[i, k] + n * x[i, j, k] <= n - 1)
 
-# 11) opcional: força todas as prensas usadas (se solicitado)
+# 10) força todas as prensas usadas 
 if USE_ALL_PRESSES:
     for i in range(m):
         model.addConstr(z[i] == 1)
