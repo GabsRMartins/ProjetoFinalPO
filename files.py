@@ -1,4 +1,8 @@
 import numpy as np
+import os
+
+# Create data directory if it doesn't exist
+os.makedirs("data", exist_ok=True)
 
 m = 12
 n = 60
@@ -18,15 +22,15 @@ f = np.random.uniform(1000,5000,size=m)
 o = np.random.uniform(1,10,size=m)
 
 # SAVE as .npy (robusto)
-np.save("c_ijk.npy", c_ijk)
-np.save("t_ij.npy", t_ij)
-np.save("TD_jk.npy", TD_jk)
-np.save("S.npy", S)
-np.save("f.npy", f)
-np.save("o.npy", o)
-np.save("capacidade_i.npy", capacidade_i)
+np.save("data/c_ijk.npy", c_ijk)
+np.save("data/t_ij.npy", t_ij)
+np.save("data/TD_jk.npy", TD_jk)
+np.save("data/S.npy", S)
+np.save("data/f.npy", f)
+np.save("data/o.npy", o)
+np.save("data/capacidade_i.npy", capacidade_i)
 
 # also save CSV for interoperability if needed:
-np.savetxt("S.csv", S, delimiter=",", fmt="%.2f")
-np.savetxt("f.csv", f, delimiter=",", fmt="%.2f")
-np.savetxt("o.csv", o, delimiter=",", fmt="%.2f")
+np.savetxt("data/S.csv", S, delimiter=",", fmt="%.2f")
+np.savetxt("data/f.csv", f, delimiter=",", fmt="%.2f")
+np.savetxt("data/o.csv", o, delimiter=",", fmt="%.2f")
