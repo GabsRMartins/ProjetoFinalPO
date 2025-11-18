@@ -137,7 +137,7 @@ if USE_ALL_PRESSES:
 # --- parâmetros do solver
 if TIME_LIMIT and TIME_LIMIT > 0:
     model.setParam("TimeLimit", TIME_LIMIT)
-model.setParam("MIPGap", 1e-1)
+model.setParam("MIPGap", 1e-3)
 
 # resolver
 print("Otimização iniciada...")

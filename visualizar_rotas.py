@@ -77,7 +77,7 @@ ax_geral.text(dx + 2, dy + 2, "DEPÓSITO", fontsize=11, color="red", weight="bol
 
 # Desenhar todas as rotas
 for idx, bloco in enumerate(routes):
-    i = bloco["pressa"]
+    i = bloco["prensa"]
     arcos = bloco["arcos"]
 
     if len(arcos) == 0:
@@ -183,7 +183,7 @@ print("Gerando gráficos individuais para cada prensa...")
 print("=" * 60)
 
 for idx, bloco in enumerate(routes):
-    i = bloco["pressa"]
+    i = bloco["prensa"]
     arcos = bloco["arcos"]
 
     if len(arcos) == 0:
@@ -291,7 +291,6 @@ INFORMAÇÕES DA PRENSA {i}
 
 {'─' * 70}
 
-Número de Arcos:        {len(arcos)}
 Cidades Visitadas:      {len(rota) - 1} cidades (excluindo retorno ao depósito)
 
 Rota Detalhada:
@@ -307,9 +306,6 @@ Arcos (origem → destino):
 
 {'─' * 70}
 
-Status:                 Ativa
-Custo Total Estimado:   Vide modelo de otimização
-Tempo Total:            Vide modelo de otimização
     """
     
     ax_info.text(0.05, 0.95, info_text, 
@@ -370,7 +366,7 @@ DETALHES POR PRENSA
 """
 
 for idx, bloco in enumerate(routes):
-    i = bloco["pressa"]
+    i = bloco["prensa"]
     arcos = bloco["arcos"]
     
     if len(arcos) == 0:

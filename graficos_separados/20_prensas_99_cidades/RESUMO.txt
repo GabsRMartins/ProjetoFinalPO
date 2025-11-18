@@ -1,0 +1,173 @@
+
+================================================================================
+RESUMO DA SOLUÇÃO DO PROBLEMA DE ROTEAMENTO DE VEÍCULOS (VRP)
+================================================================================
+
+Data: 2025-11-18 00:33:50
+Arquivo de Solução: solution_summary.json
+
+────────────────────────────────────────────────────────────────────────────────
+ESTATÍSTICAS GERAIS
+────────────────────────────────────────────────────────────────────────────────
+
+Número de Prensas Utilizadas:     20
+Valor do Objetivo:                2966183.64
+Total de Rotas:                   20
+
+Prensas Ativas:  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+
+────────────────────────────────────────────────────────────────────────────────
+DETALHES POR PRENSA
+────────────────────────────────────────────────────────────────────────────────
+
+PRENSA 0
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 89 → 90 → 12 → 82 → 79
+  Arquivo Gerado: 01_prensa_0.png
+
+
+PRENSA 1
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 71 → 24 → 70 → 48 → 46
+  Arquivo Gerado: 02_prensa_1.png
+
+
+PRENSA 2
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 53 → 61 → 3 → 58 → 35
+  Arquivo Gerado: 03_prensa_2.png
+
+
+PRENSA 3
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 22 → 31 → 20 → 16 → 99
+  Arquivo Gerado: 04_prensa_3.png
+
+
+PRENSA 4
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 6 → 43 → 50 → 97 → 21
+  Arquivo Gerado: 05_prensa_4.png
+
+
+PRENSA 5
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 47 → 84 → 54 → 72 → 30
+  Arquivo Gerado: 06_prensa_5.png
+
+
+PRENSA 6
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 86 → 59 → 27 → 67 → 75
+  Arquivo Gerado: 07_prensa_6.png
+
+
+PRENSA 7
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 40 → 1 → 15 → 73 → 7
+  Arquivo Gerado: 08_prensa_7.png
+
+
+PRENSA 8
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 19 → 60 → 8 → 41 → 29
+  Arquivo Gerado: 09_prensa_8.png
+
+
+PRENSA 9
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 9 → 26 → 23 → 17 → 25
+  Arquivo Gerado: 10_prensa_9.png
+
+
+PRENSA 10
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 4 → 98 → 94 → 62 → 44
+  Arquivo Gerado: 11_prensa_10.png
+
+
+PRENSA 11
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 39 → 65 → 36 → 80 → 32
+  Arquivo Gerado: 12_prensa_11.png
+
+
+PRENSA 12
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 37 → 2 → 66 → 57 → 51
+  Arquivo Gerado: 13_prensa_12.png
+
+
+PRENSA 13
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 76 → 52 → 68 → 42 → 56
+  Arquivo Gerado: 14_prensa_13.png
+
+
+PRENSA 14
+  Arcos: 5
+  Cidades Visitadas: 4
+  Rota: 0 → 34 → 92 → 96 → 83
+  Arquivo Gerado: 15_prensa_14.png
+
+
+PRENSA 15
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 64 → 63 → 81 → 28 → 10
+  Arquivo Gerado: 16_prensa_15.png
+
+
+PRENSA 16
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 13 → 85 → 77 → 78 → 45
+  Arquivo Gerado: 17_prensa_16.png
+
+
+PRENSA 17
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 95 → 14 → 93 → 11 → 38
+  Arquivo Gerado: 18_prensa_17.png
+
+
+PRENSA 18
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 55 → 49 → 5 → 87 → 74
+  Arquivo Gerado: 19_prensa_18.png
+
+
+PRENSA 19
+  Arcos: 6
+  Cidades Visitadas: 5
+  Rota: 0 → 88 → 69 → 33 → 91 → 18
+  Arquivo Gerado: 20_prensa_19.png
+
+
+================================================================================
+ARQUIVOS GERADOS
+================================================================================
+
+1. 00_grafico_completo.png       - Visão geral com todas as rotas
+2. XX_prensa_N.png                - Gráfico individual para cada prensa com detalhes
+
+Configuração: 20 Prensas, 99 Cidades
+Todos os arquivos estão no diretório: graficos_separados\20_prensas_99_cidades/
+
+================================================================================

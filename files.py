@@ -4,8 +4,8 @@ import os
 # Create data directory if it doesn't exist
 os.makedirs("data", exist_ok=True)
 
-m = 12
-n = 60
+m = 10
+n = 50
 np.random.seed(42)
 
 c_ijk = np.random.uniform(500, 5000, size=(m,n,n))
